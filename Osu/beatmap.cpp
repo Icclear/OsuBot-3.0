@@ -8,6 +8,8 @@ Beatmap::Beatmap()
 void Beatmap::LoadBeatmap(std::string BeatmapPath)
 {
     BeatmapFile.clear();
+    HitObjects.clear();
+    MsPBs.clear();
 
     MapPath = BeatmapPath;
 

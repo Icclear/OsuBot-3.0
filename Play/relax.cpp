@@ -42,7 +42,7 @@ void Relax::StartPlaying()
             const int LastClick = NextClick.BeginKlick;
             NextClick.BeginKlick = Playmanager->getNextHit()->Time - Playmanager->getPreHit();
 
-            if(!NextClick.BeginKlick == LastClick)
+            if(NextClick.BeginKlick != LastClick)
             {
                 NextClick.EndKlick = NextClick.BeginKlick + Playmanager->getNextHit()->Duration;
                 if((Playmanager->getNextHit()->Type & 2) > 0)  //Slider
