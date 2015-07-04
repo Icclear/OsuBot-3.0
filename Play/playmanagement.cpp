@@ -80,14 +80,13 @@ void Playmanagement::StartPlaying()
 
         while(LoadNextHit || NextHit.Time - preKlick < Time)
         {
-            LastHit = NextHit;
             if(HitObjectsIterator >= HitObjects->size())
             {
                 //Finished
                 FinishedSong = true;
 
-                if(RelaxPlay->ButtonPressed())
-                    break;  //Don't stop while buttons are pressed
+                if(Time < NextHit.Time + NextHit.Duration + preKlick)
+                    break;  //Don't stop until it's over
 
                 Playing = false;
                 break;
@@ -98,9 +97,15 @@ void Playmanagement::StartPlaying()
                 LoadNextHit = false;
                 NextHit = HitObjects->at(HitObjectsIterator);
 
-                if((NextHit.Type & 2) > 0)  //Slider duration
-                    NextHit.SliderDuration = currentMsPB * NextHit.Repetition * NextHit.PixelLength
+                if((NextHit.Type & 1) > 0)  //Circle duration
+                    NextHit.Duration = extraPressTime;
+
+                else if((NextHit.Type & 2) > 0)  //Slider duration
+                    NextHit.Duration = currentMsPB * NextHit.Repetition * NextHit.PixelLength
                             / LoadedBeatmap->getMapSliderMultiplier() / 100;
+
+                else if((NextHit.Type & 8) > 0) //Spin duration
+                    NextHit.Duration = NextHit.SpinEndTime - NextHit.Time;
             }
             HitObjectsIterator++;
         }

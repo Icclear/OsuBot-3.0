@@ -2,7 +2,6 @@
 #define PROGRAM_HPP
 
 #include <iostream>
-
 #include <sys/stat.h> //For listing directories
 #include <stdio.h>
 #include <thread>
@@ -40,7 +39,6 @@ private:
     Beatmap LoadedBeatmap;  //Test this stuff
 
     std::vector<std::string> SongFolderList;
-
 };
 
 #endif // PROGRAM_HPP

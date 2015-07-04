@@ -43,9 +43,7 @@ private:
     int Time;
 
     double currentMsPB;
-
     HitObject NextHit;
-    HitObject LastHit;
 
     int preKlick, extraPressTime;
 

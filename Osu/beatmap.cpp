@@ -7,6 +7,8 @@ Beatmap::Beatmap()
 
 void Beatmap::LoadBeatmap(std::string BeatmapPath)
 {
+    BeatmapFile.clear();
+
     MapPath = BeatmapPath;
 
     std::vector<std::string> BeatPath;

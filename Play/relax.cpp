@@ -37,35 +37,27 @@ void Relax::StartPlaying()
     {
         Time = Playmanager->getTime();
 
-        if(Klicked && !Playmanager->hasFinished() && Time != LastTime)
+        if(Klicked && Time != LastTime)
         {
+            const int LastClick = NextClick.BeginKlick;
             NextClick.BeginKlick = Playmanager->getNextHit()->Time - Playmanager->getPreHit();
 
-            if((Playmanager->getNextHit()->Type & 1) > 0)    //Circle
+            if(!NextClick.BeginKlick == LastClick)
             {
-                NextClick.EndKlick = NextClick.BeginKlick + Playmanager->getExtraPressTime();
-            }
-            else if((Playmanager->getNextHit()->Type & 2) > 0)  //Slider
-            {
-                NextClick.EndKlick = NextClick.BeginKlick + Playmanager->getNextHit()->SliderDuration
-                        + Playmanager->getPreHit(); //Slider released too early sometimes
-            }
-            else if((Playmanager->getNextHit()->Type & 8) > 0)  //Spin
-            {
-                NextClick.EndKlick = Playmanager->getNextHit()->SpinEndTime;
-            }
-            else
-                std::cerr << "Unknown Hitobject type." << std::endl;
+                NextClick.EndKlick = NextClick.BeginKlick + Playmanager->getNextHit()->Duration;
+                if((Playmanager->getNextHit()->Type & 2) > 0)  //Slider
+                {
+                    NextClick.EndKlick += Playmanager->getPreHit();
+                }
 
-            Klicked = false;
-        }
-        if(!Playmanager->hasFinished())
-        {
-            if(Time >= NextClick.BeginKlick && !Klicked && Time != LastTime)
-            {
-                Klicked = true;
-                Klick();
+                Klicked = false;
             }
+        }
+
+        if(Time >= NextClick.BeginKlick && !Klicked && Time != LastTime)
+        {
+            Klicked = true;
+            Klick();
         }
 
         ReleaseButtons();

@@ -76,7 +76,6 @@ void Program::checkForPlaying()
             Osu.readPlaying(Playing);
             if(Playing)
             {
-                std::cout << "Playing." << std::endl;
                 Playmanagement Play(LoadedBeatmap, Osu);
                 PlayManagerCloser = &Play;
                 Play.StartPlaying();

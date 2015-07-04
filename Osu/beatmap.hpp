@@ -24,7 +24,7 @@ struct HitObject
     std::vector<int> SliderY;
     int Repetition;
     double PixelLength;
-    double SliderDuration;
+    double Duration;
     int SpinEndTime;
 };
 
