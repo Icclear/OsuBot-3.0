@@ -74,6 +74,23 @@ void Auto::StartPlaying()
         else if(autoData.ActiveMode == Slider)
         {
             //Todo: DO some fancy slider stuff
+
+            if(autoData.AutoHitObject->SliderType == 'P')   //Passthrough / CircumscribedCircle
+            {
+
+            }
+            else if(autoData.AutoHitObject->SliderType == 'C')  //CATMULL
+            {
+
+            }
+            else if(autoData.AutoHitObject->SliderType == 'B')  //BEZIER
+            {
+
+            }
+            else if(autoData.AutoHitObject->SliderType == 'L')  //Linear
+            {
+
+            }
         }
         else if(autoData.ActiveMode == Spin)
         {
