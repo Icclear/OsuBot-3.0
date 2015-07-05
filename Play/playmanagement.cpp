@@ -3,11 +3,13 @@
 Playmanagement::Playmanagement(Beatmap &beatmap, OsuManagement &osu)
 {
     RelaxThread = nullptr;
+    AutoThread = nullptr;
 
     LoadedBeatmap = &beatmap;
     Osu = &osu;
 
     RelaxPlay = new Relax(*this);
+    AutoPlay = new Auto(*this);
 
     HitObjects = LoadedBeatmap->getHitObjects();
     MsPBs = LoadedBeatmap->getMsPBs();
@@ -32,6 +34,16 @@ Playmanagement::~Playmanagement()
 
     delete RelaxThread;
     delete RelaxPlay;
+
+
+    while(AutoThread != nullptr && !AutoThread->joinable())
+        Sleep(100);
+
+    if(AutoThread != nullptr)
+        AutoThread->join();
+
+    delete AutoThread;
+    delete AutoPlay;
 }
 
 void Playmanagement::StartPlaying()
@@ -49,6 +61,8 @@ void Playmanagement::StartPlaying()
     do
     {
         Sleep(100);
+
+        //Todo: Add some check if the game is still running
         Osu->readPlaying(Playing);
         if(!Playing)
         {
@@ -59,11 +73,13 @@ void Playmanagement::StartPlaying()
 
     //Start Playthreads
     RelaxThread = new std::thread(Relax::StartPlaying, RelaxPlay);
+    AutoThread = new std::thread(Auto::StartPlaying, AutoPlay);
 
     std::cout << "Started playing" << std::endl;
 
     while(Playing)
     {
+        //Todo: Add some check if the game is still running
         Osu->readTime(Time);
 
         //MsPB

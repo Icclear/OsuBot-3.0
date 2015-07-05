@@ -1,13 +1,14 @@
 #ifndef PLAY_HPP
 #define PLAY_HPP
 
+#include <windows.h>
+
 class Play
 {
 public:
     Play() {}
     virtual ~Play() {}
     virtual void StartPlaying() = 0;
-    virtual bool ButtonPressed() = 0;
 
     void activateHR() { HR = true; }
     void activateDT() { DT = true; }

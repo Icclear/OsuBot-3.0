@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     Include/aobscan.cpp \
     Osu/beatmap.cpp \
     Play/playmanagement.cpp \
-    Play/relax.cpp
+    Play/relax.cpp \
+    Play/auto.cpp
 
 HEADERS  += mainwindow.hpp \
     Osu/osumanagement.hpp \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.hpp \
     Include/splitstring.hpp \
     Play/playmanagement.hpp \
     Play/play.hpp \
-    Play/relax.hpp
+    Play/relax.hpp \
+    Play/auto.hpp
 
 FORMS    += mainwindow.ui
 

@@ -6,8 +6,10 @@
 #include "Osu/osumanagement.hpp"
 #include "Play/play.hpp"
 #include "Play/relax.hpp"
+#include "Play/auto.hpp"
 
 class Relax;    //Declaration
+class Auto;
 
 class Playmanagement
 {
@@ -49,6 +51,8 @@ private:
 
     std::thread *RelaxThread;
     Relax *RelaxPlay;
+    std::thread *AutoThread;
+    Auto *AutoPlay;
 };
 
 #endif // PLAYMANAGEMENT_HPP

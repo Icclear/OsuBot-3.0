@@ -29,7 +29,6 @@ public:
     //~Relax();
 
     void StartPlaying();
-    bool ButtonPressed() { return (Button1.Pressed || Button2.Pressed); }
 private:
     Playmanagement *Playmanager;
 
