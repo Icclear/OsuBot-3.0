@@ -72,8 +72,10 @@ void Playmanagement::StartPlaying()
     }while(Time < HitObjects->at(0).Time - 400 || Time > HitObjects->at(0).Time);
 
     //Start Playthreads
-    RelaxThread = new std::thread(Relax::StartPlaying, RelaxPlay);
-    AutoThread = new std::thread(Auto::StartPlaying, AutoPlay);
+    if(RelaxEnabled)
+        RelaxThread = new std::thread(Relax::StartPlaying, RelaxPlay);
+    if(AutoEnabled)
+        AutoThread = new std::thread(Auto::StartPlaying, AutoPlay);
 
     std::cout << "Started playing" << std::endl;
 

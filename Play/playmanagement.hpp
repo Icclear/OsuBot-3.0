@@ -19,6 +19,8 @@ public:
 
     void StartPlaying();
     void StopPlaying() { Playing = false; }
+    void setRelax(bool active) { RelaxEnabled = active; }
+    void setAuto(bool active) { AutoEnabled = active; }
 
     OsuManagement *getGame() { return Osu; }
     Beatmap *getBeatmap() { return LoadedBeatmap; }
@@ -49,6 +51,8 @@ private:
 
     int preKlick, extraPressTime;
 
+
+    bool RelaxEnabled, AutoEnabled;
     std::thread *RelaxThread;
     Relax *RelaxPlay;
     std::thread *AutoThread;

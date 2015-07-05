@@ -77,6 +77,9 @@ void Program::checkForPlaying()
             if(Playing)
             {
                 Playmanagement Play(LoadedBeatmap, Osu);
+                Play.setAuto(AutoEnabled);
+                Play.setRelax(RelaxEnabled);
+
                 PlayManagerCloser = &Play;
                 Play.StartPlaying();
 

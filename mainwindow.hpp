@@ -24,6 +24,12 @@ private slots:
 
     void on_SongList_itemSelectionChanged();
 
+    void on_RelaxEnabled_stateChanged(int arg1);
+
+    void on_AutoEnabled_toggled(bool checked);
+
+    void on_RelaxEnabled_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     Program program;

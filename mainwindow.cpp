@@ -108,3 +108,13 @@ void MainWindow::on_SongList_itemSelectionChanged()
      // Set the current folder back to what it was:
      SetCurrentDirectory(szBuffer);
 }
+
+void MainWindow::on_AutoEnabled_toggled(bool checked)
+{
+    program.setAuto(checked);
+}
+
+void MainWindow::on_RelaxEnabled_toggled(bool checked)
+{
+    program.setRelax(checked);
+}

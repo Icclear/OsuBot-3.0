@@ -26,11 +26,17 @@ public:
 
     std::vector<std::string> *getSongList() { return &SongFolderList; }
 
+    void setRelax(bool active) { RelaxEnabled = active; }
+    void setAuto(bool active) { AutoEnabled = active; }
+
 private:
     int Error = 0;
     bool Playing;
 
     bool Running = true;
+
+    bool RelaxEnabled = true;
+    bool AutoEnabled = false;
 
     std::thread *PlayingThread;
     Playmanagement *PlayManagerCloser;
